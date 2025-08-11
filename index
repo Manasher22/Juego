@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Probabilidad - Cajas Misteriosas</title>
+    <meta name="description" content="Juego estratégico de probabilidad donde compites contra una IA inteligente evitando bombas ocultas en cajas misteriosas.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎮 Juego de Probabilidad</h1>
+            <p>Compite contra la IA evitando las bombas</p>
+        </header>
+
+        <!-- Game Setup -->
+        <div id="setup-screen" class="setup-screen">
+            <div class="setup-card">
+                <h2>🎯 Configurar Juego</h2>
+                <form id="game-form" class="setup-form">
+                    <div class="input-group">
+                        <label for="total-boxes">📦 Total de Cajas:</label>
+                        <input type="number" id="total-boxes" min="10" max="50" value="20" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="total-bombs">💣 Total de Bombas:</label>
+                        <input type="number" id="total-bombs" min="3" max="20" value="8" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">🚀 Comenzar Juego</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="game-screen hidden">
+            <!-- Score Board -->
+            <div class="scoreboard">
+                <div class="score-item player">
+                    <span class="score-label">👤 Jugador</span>
+                    <span class="score-value" id="player-bombs">0</span>
+                    <span class="score-unit">bombas</span>
+                </div>
+                
+                <div class="score-item machine">
+                    <span class="score-label">🤖 IA</span>
+                    <span class="score-value" id="machine-bombs">0</span>
+                    <span class="score-unit">bombas</span>
+                </div>
+                
+                <div class="progress-info">
+                    <span>Caja <span id="current-index">1</span> de <span id="total-display">20</span></span>
+                </div>
+            </div>
+
+            <!-- Game Status -->
+            <div class="game-status" id="game-status">
+                Es tu turno. Elige tu acción.
+            </div>
+
+            <!-- AI Thinking Indicator -->
+            <div id="ai-thinking" class="ai-thinking hidden">
+                <div class="thinking-spinner">🤖</div>
+                <span>IA Pensando...</span>
+            </div>
+
+            <!-- Player Actions -->
+            <div id="player-actions" class="player-actions">
+                <button id="open-self" class="action-btn open-self">
+                    <span class="btn-icon">📦</span>
+                    <span class="btn-text">Abrir Yo</span>
+                </button>
+                
+                <button id="force-machine" class="action-btn force-machine">
+                    <span class="btn-icon">🤖</span>
+                    <span class="btn-text">Máquina Abre</span>
+                </button>
+            </div>
+
+            <!-- Game Controls -->
+            <div class="game-controls">
+                <button id="new-game" class="btn-secondary">🔄 Nuevo Juego</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="game-over-screen hidden">
+            <div class="game-over-card">
+                <div class="game-over-content">
+                    <div class="winner-announcement" id="winner-announcement">
+                        🎉 ¡Juego Terminado!
+                    </div>
+                    
+                    <div class="final-scores">
+                        <div class="final-score">
+                            <span class="score-label">👤 Jugador:</span>
+                            <span class="score-value" id="final-player-bombs">0</span>
+                            <span class="score-unit">bombas</span>
+                        </div>
+                        <div class="final-score">
+                            <span class="score-label">🤖 IA:</span>
+                            <span class="score-value" id="final-machine-bombs">0</span>
+                            <span class="score-unit">bombas</span>
+                        </div>
+                    </div>
+                    
+                    <button id="play-again" class="btn-primary">🎮 Jugar Otra Vez</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
